@@ -14,7 +14,8 @@ ENV TITLE=Dolphin
 RUN \
     apt-get update && \
     apt-get install -y software-properties-common && \
-    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /var/lib/apt/lists/*
+RUN \
   echo "**** add icon ****" && \
   curl -o \
     /usr/share/selkies/www/icon.png \
@@ -77,9 +78,9 @@ RUN \
   libasound2-dev \
   libpulse-dev \
   libgl1-mesa-dev \
-  libcurl4-openssl-dev \
-  echo "**** starting FM-Slippi install (NO NETPLAY) ****" \
-  sh -c "$(curl -Ls https://github.com/project-slippi/Slippi-FM-installer/raw/master/setup)" \
+  libcurl4-openssl-dev && \
+  echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
+  sh -c "$(curl -Ls https://github.com/project-slippi/Slippi-FM-installer/raw/master/setup)" && \
   echo "**** cleanup ****" && \
   printf \
     "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
