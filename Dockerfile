@@ -44,7 +44,7 @@ RUN \
   libswscale-dev \
   libusb-1.0-0-dev \
   libwxbase3.0-dev \
-  libwxgtk3.0-gtk3-dev \
+  libwxgtk3.2-dev \
   libxext-dev \
   libxrandr-dev \
   portaudio19-dev \
