@@ -81,8 +81,9 @@ RUN \
   git clone https://github.com/project-slippi/Ishiiruka
   COPY . .
   RUN cd Ishiiruka/
+  RUN ls
   RUN \
-  build-linux.sh [playback] && \
+  ./build-linux.sh [playback] && \
   echo "**** cleanup ****" && \
   printf \
     "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
