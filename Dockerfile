@@ -75,10 +75,8 @@ RUN \
   libpulse-dev \
   libgl1-mesa-dev \
   libcurl4-openssl-dev \
-  && \
-  echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
-  && \
-  sh -c "$(curl -Ls https://github.com/project-slippi/Slippi-FM-installer/raw/master/setup)" && \
+  echo "**** starting FM-Slippi install (NO NETPLAY) ****" \
+  sh -c "$(curl -Ls https://github.com/project-slippi/Slippi-FM-installer/raw/master/setup)" \
   echo "**** cleanup ****" && \
   printf \
     "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
