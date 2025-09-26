@@ -73,7 +73,6 @@ echo "      2) Slippi r16"
 echo "      3) Slippi r11"
 echo "      4) Slippi r10"
 echo "      *) Default: Slippi r18"
-read_input RESP 1
 
 COMMITHASH="1ef6f7bfc12e8566153054e6c964111da44f9125"
 SLIPVER="r18"
@@ -131,7 +130,7 @@ echo ""
 echo "[*] CPU Threads detected: $CPUS"
 echo "[*] How many threads would you like to use to compile? "
 echo "    (passed to make as -j flag, default: 1, range 1-$((CPUS)): "
-read_input RESP
+
 
 CPUS=1
 
