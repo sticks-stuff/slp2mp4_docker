@@ -10,6 +10,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - ./config:/config
+      - ./roms:/roms
     ports:
       - 3000:3000
       - 3502:3001
