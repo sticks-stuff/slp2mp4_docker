@@ -7,7 +7,7 @@ ARG BUILD_DATE
 ARG VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="thelamer"
-
+COPY setup.sh setup.sh
 # title
 ENV TITLE=Dolphin
 
@@ -78,7 +78,7 @@ RUN \
   libgl1-mesa-dev \
   libcurl4-openssl-dev && \
   echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
-  sh -c "$(curl -Ls https://github.com/project-slippi/Slippi-FM-installer/raw/master/setup)" && \
+  sh ./setup.sh && \
   echo "**** cleanup ****" && \
   printf \
     "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
