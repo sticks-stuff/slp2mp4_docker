@@ -78,7 +78,8 @@ RUN \
   libgl1-mesa-dev \
   libcurl4-openssl-dev && \
   echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
-  sh ./setup.sh && \
+  git clone https://github.com/project-slippi/Ishiiruka && \
+  Ishiiruka/build-linux.sh [playback] && \
   echo "**** cleanup ****" && \
   printf \
     "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
