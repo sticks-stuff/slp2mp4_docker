@@ -109,4 +109,4 @@ RUN ls
 # ports and volumes
 EXPOSE 3001
 
-VOLUME /
+VOLUME /config
