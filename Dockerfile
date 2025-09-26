@@ -80,9 +80,9 @@ RUN \
   echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
   git clone https://github.com/project-slippi/Ishiiruka
   COPY . .
-  RUN ls
+  RUN cd Ishiiruka/
   RUN \
-  Ishiiruka/build-linux.sh [playback] && \
+  build-linux.sh [playback] && \
   echo "**** cleanup ****" && \
   printf \
     "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
