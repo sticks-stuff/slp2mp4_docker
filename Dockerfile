@@ -12,6 +12,9 @@ LABEL maintainer="thelamer"
 ENV TITLE=Dolphin
 
 RUN \
+    apt-get update && \
+    apt-get install -y software-properties-common && \
+    rm -rf /var/lib/apt/lists/* && \
   echo "**** add icon ****" && \
   curl -o \
     /usr/share/selkies/www/icon.png \
