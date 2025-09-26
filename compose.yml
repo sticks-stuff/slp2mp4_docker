@@ -9,9 +9,9 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/config:/config
+      - ./config:/config
     ports:
       - 3000:3000
-      - 3002:3001
+      - 3502:3001
     shm_size: "1gb"
     restart: unless-stopped
