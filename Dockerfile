@@ -78,7 +78,9 @@ RUN \
   libgl1-mesa-dev \
   libcurl4-openssl-dev && \
   echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
-  git clone https://github.com/project-slippi/Ishiiruka && \
+  git clone https://github.com/project-slippi/Ishiiruka
+  COPY . .
+  RUN \
   Ishiiruka/build-linux.sh [playback] && \
   echo "**** cleanup ****" && \
   printf \
