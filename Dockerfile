@@ -6,15 +6,18 @@ FROM ghcr.io/linuxserver/baseimage-selkies:ubuntunoble
 ARG BUILD_DATE
 ARG VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="thelamer"
-COPY setup.sh setup.sh
+LABEL maintainer="silktail4u"
 # title
-ENV TITLE=Dolphin
+ENV TITLE=SlippiDolphin
 
 RUN \
     apt-get update && \
     apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/*
+RUN echo "**** installing python ****" && \
+    add-apt-repository ppa:deadsnakes/ppa && \
+    apt update && \ 
+    apt install python3.11 && \
 RUN \
   echo "**** add icon ****" && \
   curl -o \
