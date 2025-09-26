@@ -21,7 +21,6 @@ RUN \
     /usr/share/selkies/www/icon.png \
     https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dolphin-logo.png && \
   echo "**** install packages ****" && \
-  add-apt-repository ppa:okirby/qt6-backports && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
   cmake \
