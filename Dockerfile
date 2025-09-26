@@ -102,6 +102,7 @@ RUN ls
 # add local files
 COPY /root /
 
+RUN ls
 # ports and volumes
 EXPOSE 3001
 
