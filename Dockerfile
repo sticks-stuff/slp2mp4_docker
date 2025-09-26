@@ -26,6 +26,7 @@ RUN \
   cmake \
   pkg-config \
   git \
+  libgtk-3-dev \
   libao-dev \
   libasound2-dev \
   libavcodec-dev \
