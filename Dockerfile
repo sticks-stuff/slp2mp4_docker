@@ -17,7 +17,7 @@ RUN \
 RUN echo "**** installing python ****" && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt update && \ 
-    apt install python3.11 && \
+    apt install python3.11
 RUN \
   echo "**** add icon ****" && \
   curl -o \
