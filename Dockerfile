@@ -82,7 +82,7 @@ RUN \
   git clone https://github.com/project-slippi/Ishiiruka
   COPY . .
   WORKDIR Ishiiruka/
-  RUN ls
+  RUN git submodule update --init --recursive
   RUN \
   ./build-linux.sh [playback] && \
   echo "**** cleanup ****" && \
