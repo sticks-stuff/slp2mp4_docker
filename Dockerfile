@@ -82,6 +82,8 @@ RUN \
   git clone https://github.com/project-slippi/Ishiiruka
   COPY . .
   WORKDIR Ishiiruka/
+  RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
+    export PATH="/root/.cargo/bin:$PATH"
   RUN git submodule update --init --recursive
   RUN \
   ./build-linux.sh [playback] && \
