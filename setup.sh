@@ -132,7 +132,7 @@ echo "[*] How many threads would you like to use to compile? "
 echo "    (passed to make as -j flag, default: 1, range 1-$((CPUS)): "
 
 
-CPUS=1
+##CPUS=2
 
 echo "[*] Compiling with $CPUS thread(s)!"
 echo ""
