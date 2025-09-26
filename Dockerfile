@@ -80,7 +80,7 @@ RUN \
   echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
   git clone https://github.com/project-slippi/Ishiiruka
   COPY . .
-  RUN cd Ishiiruka/
+  WORKDIR Ishiiruka/
   RUN ls
   RUN \
   ./build-linux.sh [playback] && \
