@@ -9,23 +9,32 @@ LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DA
 LABEL maintainer="silktail4u"
 # title
 ENV TITLE=SlippiDolphin
+ARG USER_NAME=abc
+ARG USER_ID=1000
+ARG GROUP_ID=1000
 
-RUN groupadd -r replayclient && useradd -r -g replayclient replayclient
+RUN addgroup --gid $GROUP_ID $USER_NAME && \
+    adduser --uid $USER_ID --gid $GROUP_ID --disabled-password --gecos "" $USER_NAME
 
-RUN apt-get update && \
-    apt-get install -y software-properties-common && \
+RUN echo "$USER_NAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+Switch to the non-root user
+USER $USER_NAME
+
+RUN sudo apt-get update && \
+    sudo apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/*
 RUN echo "**** installing python ****" && \
-    add-apt-repository ppa:deadsnakes/ppa && \
-    apt update && \ 
-    apt install -y python3.11
+    sudo add-apt-repository ppa:deadsnakes/ppa && \
+    sudo apt update && \ 
+    sudo apt install -y python3.11
 RUN \
   echo "**** add icon ****" && \
   curl -o /usr/share/selkies/www/icon.png \
   https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dolphin-logo.png && \
   echo "**** install packages ****" && \
-  apt-get update && \
-  apt-get install -y --no-install-recommends \
+  sudo apt-get update && \
+  sudo apt-get install -y --no-install-recommends \
   cmake \
   pkg-config \
   git \
