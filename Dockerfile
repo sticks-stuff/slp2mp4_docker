@@ -13,8 +13,6 @@ ARG USER_NAME=abc
 ARG USER_ID=1000
 ARG GROUP_ID=1000
 
-RUN adduser --uid $USER_ID --gid $GROUP_ID --disabled-password --gecos "" $USER_NAME
-
 RUN echo "$USER_NAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 
