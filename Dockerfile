@@ -23,7 +23,7 @@ RUN echo "$USER_NAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/*
-RUN "**** installing python ****" && \
+RUN echo "**** installing python ****" && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt update && \ 
     apt install -y python3.11
