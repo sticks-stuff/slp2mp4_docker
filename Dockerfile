@@ -10,8 +10,7 @@ LABEL maintainer="silktail4u"
 # title
 ENV TITLE=SlippiDolphin
 
-RUN \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/*
 RUN echo "**** installing python ****" && \
@@ -20,9 +19,8 @@ RUN echo "**** installing python ****" && \
     apt install -y python3.11
 RUN \
   echo "**** add icon ****" && \
-  curl -o \
-    /usr/share/selkies/www/icon.png \
-    https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dolphin-logo.png && \
+  curl -o /usr/share/selkies/www/icon.png \
+  https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dolphin-logo.png && \
   echo "**** install packages ****" && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
@@ -83,12 +81,17 @@ RUN \
   libcurl4-openssl-dev && \
   echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
   git clone https://github.com/project-slippi/Ishiiruka
-  COPY . .
-  WORKDIR Ishiiruka/
-  RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
+  
+COPY . .
+  
+WORKDIR Ishiiruka/
+  
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
     export PATH="/root/.cargo/bin:$PATH"
-  RUN git submodule update --init --recursive
-  RUN \
+  
+RUN git submodule update --init --recursive
+  
+RUN \
   ./build-linux.sh [playback] && \
   echo "**** cleanup ****" && \
   printf \
@@ -100,12 +103,16 @@ RUN \
     /var/lib/apt/lists/* \
     /var/tmp/* \
     /tmp/*
-    
-RUN ls
+
+# Create a new non-root user and group
+RUN groupadd -r appuser && useradd -r -g replayclient replayclient
+
 # add local files
 COPY /root /
 
-RUN ls
+RUN chown -R replayclient:replayclient /
+
+
 # ports and volumes
 EXPOSE 3001
 
