@@ -116,7 +116,9 @@ RUN \
 
 
 RUN chown -R abc:abc /Ishiiruka
-
+RUN chown -R abc:abc /config
+RUN chown -R abc:abc /roms
+RUN chmod -R 777 /Ishiiruka
 RUN export NO_AT_BRIDGE=1
 # ports and volumes
 EXPOSE 3001
