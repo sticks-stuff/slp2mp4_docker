@@ -108,11 +108,11 @@ RUN \
 RUN groupadd -r replayclient && useradd -r -g replayclient replayclient
 
 # add local files
-COPY /root /
+COPY /root /replayclient
 
-RUN chown -R replayclient:replayclient /
+RUN chown -R replayclient:replayclient /replayclient
 
-
+RUN chown -R replayclient:replayclient /Ishiiruka
 # ports and volumes
 EXPOSE 3001
 
