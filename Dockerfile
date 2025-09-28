@@ -18,7 +18,7 @@ RUN addgroup --gid $GROUP_ID $USER_NAME && \
 
 RUN echo "$USER_NAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-Switch to the non-root user
+
 USER $USER_NAME
 
 RUN sudo apt-get update && \
