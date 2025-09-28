@@ -119,11 +119,11 @@ USER $USER_NAME
 RUN \
   ./build-linux.sh [playback] && \
   echo "**** cleanup ****" && \
-  printf \
+  sudo printf \
     "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
     > /build_version && \
-  apt-get autoclean && \
-  rm -rf \
+  sudo apt-get autoclean && \
+  sudo rm -rf \
     /config/.cache \
     /var/lib/apt/lists/* \
     /var/tmp/* \
