@@ -80,7 +80,10 @@ RUN \
   libasound2-dev \
   libpulse-dev \
   libgl1-mesa-dev \
-  libcurl4-openssl-dev && \
+  libcurl4-openssl-dev \
+  dbus \
+  at-spi2-core \ 
+  && \
   echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
   git clone https://github.com/project-slippi/Ishiiruka
   
@@ -114,7 +117,7 @@ RUN \
 
 RUN chown -R abc:abc /Ishiiruka
 
-
+RUN export NO_AT_BRIDGE=1
 # ports and volumes
 EXPOSE 3001
 
