@@ -18,22 +18,22 @@ RUN usermod -aG sudo $USER_NAME
 RUN echo "$USER_NAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 
-USER $USER_NAME
 
-RUN sudo apt-get update && \
-    sudo apt-get install -y software-properties-common && \
-    sudo rm -rf /var/lib/apt/lists/*
-RUN echo "**** installing python ****" && \
-    sudo add-apt-repository ppa:deadsnakes/ppa && \
-    sudo apt update && \ 
-    sudo apt install -y python3.11
+
+RUN apt-get update && \
+    apt-get install -y software-properties-common && \
+    rm -rf /var/lib/apt/lists/*
+RUN "**** installing python ****" && \
+    add-apt-repository ppa:deadsnakes/ppa && \
+    apt update && \ 
+    apt install -y python3.11
 RUN \
   echo "**** add icon ****" && \
   curl -o /usr/share/selkies/www/icon.png \
   https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dolphin-logo.png && \
   echo "**** install packages ****" && \
-  sudo apt-get update && \
-  sudo apt-get install -y --no-install-recommends \
+  apt-get update && \
+  apt-get install -y --no-install-recommends \
   cmake \
   pkg-config \
   git \
@@ -105,9 +105,16 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
 RUN git submodule update --init --recursive
   
 # add local files
-COPY /root /abc
+COPY /root /home/abc
 
-RUN chown -R abc:abc /abc
+RUN chown -R abc:abc /home/abc
+
+
+RUN chown -R abc:abc /Ishiiruka
+RUN chown -R abc:abc /config
+RUN chown -R abc:abc /roms
+RUN chmod -R 777 /Ishiiruka
+USER $USER_NAME
 
 RUN \
   ./build-linux.sh [playback] && \
@@ -122,11 +129,6 @@ RUN \
     /var/tmp/* \
     /tmp/*
 
-
-RUN chown -R abc:abc /Ishiiruka
-RUN chown -R abc:abc /config
-RUN chown -R abc:abc /roms
-RUN chmod -R 777 /Ishiiruka
 RUN export NO_AT_BRIDGE=1
 # ports and volumes
 EXPOSE 3001
