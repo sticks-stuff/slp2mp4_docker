@@ -112,6 +112,7 @@ RUN chown -R abc:abc /home/abc
 
 RUN chown -R abc:abc /Ishiiruka
 RUN chown -R abc:abc /config
+RUN mkdir /build_version
 RUN chown -R abc:abc /build_version
 RUN chown -R abc:abc /roms
 RUN chmod -R 777 /Ishiiruka
