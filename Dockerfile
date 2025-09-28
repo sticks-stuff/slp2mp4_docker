@@ -100,6 +100,8 @@ RUN chown -R replayclient:replayclient /replayclient
 
 USER replayclient
 
+RUN id -u replayclient
+
 RUN \
   ./build-linux.sh [playback] && \
   echo "**** cleanup ****" && \
