@@ -10,6 +10,8 @@ LABEL maintainer="silktail4u"
 # title
 ENV TITLE=SlippiDolphin
 
+RUN groupadd -r replayclient && useradd -r -g replayclient replayclient
+
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/*
@@ -91,6 +93,13 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
   
 RUN git submodule update --init --recursive
   
+# add local files
+COPY /root /replayclient
+
+RUN chown -R replayclient:replayclient /replayclient
+
+USER replayclient
+
 RUN \
   ./build-linux.sh [playback] && \
   echo "**** cleanup ****" && \
@@ -104,15 +113,10 @@ RUN \
     /var/tmp/* \
     /tmp/*
 
-# Create a new non-root user and group
-RUN groupadd -r replayclient && useradd -r -g replayclient replayclient
-
-# add local files
-COPY /root /replayclient
-
-RUN chown -R replayclient:replayclient /replayclient
 
 RUN chown -R replayclient:replayclient /Ishiiruka
+
+
 # ports and volumes
 EXPOSE 3001
 
