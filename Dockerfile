@@ -94,13 +94,9 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
 RUN git submodule update --init --recursive
   
 # add local files
-COPY /root /replayclient
+COPY /root /abc
 
-RUN chown -R replayclient:replayclient /replayclient
-
-USER replayclient
-
-RUN id -u replayclient
+RUN chown -R abc:abc /abc
 
 RUN \
   ./build-linux.sh [playback] && \
@@ -116,7 +112,7 @@ RUN \
     /tmp/*
 
 
-RUN chown -R replayclient:replayclient /Ishiiruka
+RUN chown -R abc:abc /Ishiiruka
 
 
 # ports and volumes
