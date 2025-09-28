@@ -105,7 +105,7 @@ RUN \
     /tmp/*
 
 # Create a new non-root user and group
-RUN groupadd -r appuser && useradd -r -g replayclient replayclient
+RUN groupadd -r replayclient && useradd -r -g replayclient replayclient
 
 # add local files
 COPY /root /
