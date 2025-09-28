@@ -13,6 +13,8 @@ ARG USER_NAME=abc
 ARG USER_ID=1000
 ARG GROUP_ID=1000
 
+RUN usermod -aG sudo $USER_NAME
+
 RUN echo "$USER_NAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 
@@ -20,7 +22,7 @@ USER $USER_NAME
 
 RUN sudo apt-get update && \
     sudo apt-get install -y software-properties-common && \
-    rm -rf /var/lib/apt/lists/*
+    sudo rm -rf /var/lib/apt/lists/*
 RUN echo "**** installing python ****" && \
     sudo add-apt-repository ppa:deadsnakes/ppa && \
     sudo apt update && \ 
