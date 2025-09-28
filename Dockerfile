@@ -93,7 +93,7 @@ RUN \
   at-spi2-core \ 
   && \
   echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
-  git clone https://github.com/project-slippi/Ishiiruka
+  sudo git clone https://github.com/project-slippi/Ishiiruka
   
 COPY . .
   
