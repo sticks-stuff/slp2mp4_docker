@@ -17,7 +17,8 @@ RUN \
 RUN echo "**** installing python ****" && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt update && \ 
-    apt install -y python3.11
+    apt install -y python3.11 \
+    python3-pip
 RUN \
   echo "**** add icon ****" && \
   curl -o \
@@ -101,6 +102,8 @@ RUN \
     /var/tmp/* \
     /tmp/*
     
+RUN pip install "slp2mp4[gui] @ git+https://github.com/davisdude/slp2mp4.git"
+RUN slp2mp4 -h
 RUN ls
 # add local files
 COPY /root /
