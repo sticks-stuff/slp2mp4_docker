@@ -120,18 +120,6 @@ USER $USER_NAME
 
 RUN \
   ./build-linux.sh [playback]
-USER root
-RUN echo "**** cleanup ****" && \
-    printf \
-    "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
-    > /build_version && \
-    apt-get autoclean && \
-    rm -rf \
-    /config/.cache \
-    /var/lib/apt/lists/* \
-    /var/tmp/* \
-    /tmp/*
-
 RUN export NO_AT_BRIDGE=1
 # ports and volumes
 EXPOSE 3001
