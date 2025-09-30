@@ -128,3 +128,4 @@ RUN ls
 EXPOSE 3001
 
 VOLUME /config
+ENTRYPOINT ["slp2mp4", "-o /config", "directory", "/config/SlippiReplays"]
