@@ -104,6 +104,21 @@ RUN \
     
 RUN pip install "slp2mp4[gui] @ git+https://github.com/davisdude/slp2mp4.git"
 RUN slp2mp4 -h
+RUN echo "[paths]
+ffmpeg = "ffmpeg"
+slippi_playback = "/Ishiiruka/build/Binaries/dolphin-emu"
+ssbm_iso = "/roms/Melee.iso"
+
+[dolphin]
+backend = "OGL"
+resolution = "1080p"
+bitrate = 16000
+
+[ffmpeg]
+volume = 25
+
+[runtime]
+parallel = 0" > ~/.slp2mp4.toml
 RUN ls
 # add local files
 COPY /root /
