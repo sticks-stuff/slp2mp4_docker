@@ -119,9 +119,10 @@ RUN chmod -R 777 /Ishiiruka
 USER $USER_NAME
 
 RUN \
-  ./build-linux.sh [playback] && \
-  echo "**** cleanup ****" && \
-  sudo printf \
+  ./build-linux.sh [playback]
+USER root
+RUN  echo "**** cleanup ****" && \
+     sudo printf \
     "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
     > /build_version && \
   sudo apt-get autoclean && \
