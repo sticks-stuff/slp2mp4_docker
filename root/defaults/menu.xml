@@ -2,6 +2,7 @@
 <openbox_menu xmlns="http://openbox.org/3.4/menu">
 <menu id="root-menu" label="MENU">
 <item label="xterm" icon="/usr/share/pixmaps/xterm-color_48x48.xpm"><action name="Execute"><command>/usr/bin/xterm</command></action></item>
-<item label="Dolphin" icon="/usr/share/icons/hicolor/scalable/apps/dolphin-emu.svg"><action name="Execute"><command>sh -c "xterm -e /Ishiiruka/build/Binaries/dolphin-emu"</command></action></item>
+<item label="Dolphin" icon="/usr/share/icons/hicolor/scalable/apps/dolphin-emu.svg"><action name="Execute"><command>sh -c "xterm -e /Ishiiruka/build/Binaries/dolphin-emu ${DOLPHIN_CLI}"</command></action></item>
+<item label="convert2mp4" icon="/usr/share/icons/hicolor/scalable/apps/dolphin-emu.svg"><action name="Execute"><command>sh -c "slp2mp4 -o /config single /config/SlippiReplays/*.slp"</command></action></item>
 </menu>
 </openbox_menu>

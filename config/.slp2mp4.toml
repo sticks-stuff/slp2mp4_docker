@@ -1,0 +1,15 @@
+[paths]
+ffmpeg = "ffmpeg"
+slippi_playback = "/Ishiiruka/build/Binaries/dolphin-emu"
+ssbm_iso = "/roms/Melee.iso"
+
+[dolphin]
+backend = "OGL"
+resolution = "720p"
+bitrate = 2000
+
+[ffmpeg]
+volume = 100
+
+[runtime]
+parallel = 4

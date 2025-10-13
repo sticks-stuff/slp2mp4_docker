@@ -14,5 +14,5 @@ services:
     ports:
       - 3000:3000
       - 3502:3001
-    shm_size: "1gb"
+    shm_size: "16gb"
     restart: unless-stopped

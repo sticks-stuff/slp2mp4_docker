@@ -14,12 +14,15 @@ RUN \
     apt-get update && \
     apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/*
-RUN echo "**** installing python ****" && \
+    RUN echo "**** installing python ****" && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt update && \ 
     apt install -y python3.11 \
-    python3-pip
-RUN \
+    python3-pip \
+    python3-tk \
+    unzip
+
+  RUN \
   echo "**** add icon ****" && \
   curl -o \
     /usr/share/selkies/www/icon.png \
@@ -90,7 +93,7 @@ RUN \
     export PATH="/root/.cargo/bin:$PATH"
   RUN git submodule update --init --recursive
   RUN \
-  ./build-linux.sh [playback] && \
+  ./build-linux.sh playback && \
   echo "**** cleanup ****" && \
   printf \
     "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
@@ -102,30 +105,17 @@ RUN \
     /var/tmp/* \
     /tmp/*
     
-RUN pip install "slp2mp4[gui] @ git+https://github.com/davisdude/slp2mp4.git"
-RUN slp2mp4 -h
-RUN echo "[paths]
-ffmpeg = "ffmpeg"
-slippi_playback = "/Ishiiruka/build/Binaries/dolphin-emu"
-ssbm_iso = "/roms/Melee.iso"
 
-[dolphin]
-backend = "OGL"
-resolution = "1080p"
-bitrate = 16000
+  RUN pip install "slp2mp4[gui] @ git+https://github.com/davisdude/slp2mp4.git"
+  RUN slp2mp4 -h  
+   
+  RUN curl 'https://sharlot.memes.nz/2025-09-16-acb43d6952--mainline-linux-playback.zip' > ./dolphin-emu.zip
+  RUN unzip ./dolphin-emu
+  RUN chown -R abc /tmp
+  # add local files
+  COPY /root /
+  RUN ls
+  # ports and volumes
+  EXPOSE 3001
+  VOLUME /config
 
-[ffmpeg]
-volume = 25
-
-[runtime]
-parallel = 0" > ~/.slp2mp4.toml
-RUN ls
-# add local files
-COPY /root /
-
-RUN ls
-# ports and volumes
-EXPOSE 3001
-
-VOLUME /config
-ENTRYPOINT ["slp2mp4", "-o /config", "directory", "/config/SlippiReplays"]
