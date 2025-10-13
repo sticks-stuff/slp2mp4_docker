@@ -1,3 +1,5 @@
+based on dolphin-emu for docker, using dolphin ishiiruka and https://github.com/davisdude/slp2mp4 with some basic openbox config.
+
 # slp2mp4
 To use first install Docker, then clone this repo and run the following in the base directory
 ```
