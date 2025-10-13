@@ -27,5 +27,3 @@ After you have finished rendering there is a script included for moving them to 
 # TODO 
 
 Implement mainline
-
-More output modes
