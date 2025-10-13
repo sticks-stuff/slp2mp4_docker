@@ -24,6 +24,8 @@ to encode sets of slp files into one mp4 per set make subfolders in the ./config
 Once the process has begun, you are free to close the instance and let it encode.
 
 After you have finished rendering there is a script included for moving them to a desired location(NAS)
+
+shifty compatibility with wsl!!
 # TODO 
 
 Implement mainline
