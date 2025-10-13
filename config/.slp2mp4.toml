@@ -12,4 +12,4 @@ bitrate = 2000
 volume = 100
 
 [runtime]
-parallel = 4
+parallel = 2
