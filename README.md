@@ -1,5 +1,5 @@
 # slp2mp4
-To use first install Docker, then run 
+To use first install Docker, then clone this repo and run the following in the base directory
 ```
 docker compose build --no-cache
 ```
