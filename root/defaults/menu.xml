@@ -5,7 +5,7 @@
 <item label="Dolphin" icon="/usr/share/icons/hicolor/scalable/apps/dolphin-emu.svg"><action name="Execute"><command>sh -c "xterm -e /Ishiiruka/build/Binaries/dolphin-emu ${DOLPHIN_CLI}"</command></action></item>
 <item label="filepath.slp -> filepath.mp4" icon="/usr/share/icons/hicolor/scalable/apps/dolphin-emu.svg"><action name="Execute"><command>sh -c "slp2mp4 -o /config single /config/SlippiReplays/*.slp"</command></action></item>
 <item label="folderpath_set/ -> folderpath_set.mp4" icon="/usr/share/icons/hicolor/scalable/apps/dolphin-emu.svg"><action name="Execute"><command>sh -c "slp2mp4 -o /config directory /config/SlippiReplays/*_set/"</command></action></item>
-<item label="replaymanager.zip -> replaymanager.mp4" icon="/usr/share/icons/hicolor/scalable/apps/dolphin-emu.svg"><action name="Execute"><command>sh -c "slp2mp4 -o /config replay_manager /config/SlippiReplays/*.zip"</command></action></item>
+<item label="replaymanager.zip -> replaymanager.mp4" icon="/usr/share/icons/hicolor/scalable/apps/dolphin-emu.svg"><action name="Execute"><command>sh -c "slp2mp4 -o /config zip /config/SlippiReplays/*.zip"</command></action></item>
 
 </menu>
 </openbox_menu>
