@@ -89,7 +89,7 @@ RUN \
   git clone https://github.com/project-slippi/Ishiiruka && \
   git clone https://github.com/vladfi1/dolphin
   COPY . .
-  RUN mv ./Ishiiruka/build*.sh ./dolphin/
+  RUN cp ./Ishiiruka/build*.sh ./dolphin/
   WORKDIR Ishiiruka/
   RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
     export PATH="/root/.cargo/bin:$PATH"
