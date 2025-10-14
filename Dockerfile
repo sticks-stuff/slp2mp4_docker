@@ -89,13 +89,14 @@ RUN \
   git clone https://github.com/project-slippi/Ishiiruka && \
   git clone https://github.com/vladfi1/dolphin
   COPY . .
-  RUN mv ./dolphin/ ./Ishiiruka/
+  RUN mv ./Ishiiruka/build*.sh ./dolphin/
   WORKDIR Ishiiruka/
   RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
     export PATH="/root/.cargo/bin:$PATH"
   RUN git submodule update --init --recursive
   RUN \
   ./build-linux.sh playback && \
+  ../dolphin/build-linux.sh playback && \
   echo "**** cleanup ****" && \
   printf \
     "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
