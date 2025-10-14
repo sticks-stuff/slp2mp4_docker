@@ -96,7 +96,6 @@ RUN \
   RUN git submodule update --init --recursive
   RUN \
   ./build-linux.sh playback && \
-  ../dolphin/build-linux.sh playback && \
   echo "**** cleanup ****" && \
   printf \
     "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
@@ -108,7 +107,21 @@ RUN \
     /var/tmp/* \
     /tmp/*
     
-
+  WORKDIR /dolphin
+  
+  RUN \
+  ./build-linux.sh playback && \
+  echo "**** cleanup ****" && \
+  printf \
+    "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
+    > /build_version && \
+  apt-get autoclean && \
+  rm -rf \
+    /config/.cache \
+    /var/lib/apt/lists/* \
+    /var/tmp/* \
+    /tmp/*
+    
   RUN pip install "slp2mp4[gui] @ git+https://github.com/davisdude/slp2mp4.git"
   RUN slp2mp4 -h  
   
