@@ -108,9 +108,7 @@ RUN \
 
   RUN pip install "slp2mp4[gui] @ git+https://github.com/davisdude/slp2mp4.git"
   RUN slp2mp4 -h  
-   
-  RUN curl 'https://sharlot.memes.nz/2025-09-16-acb43d6952--mainline-linux-playback.zip' > ./dolphin-emu.zip
-  RUN unzip ./dolphin-emu
+  
   RUN chown -R abc /tmp
   # add local files
   COPY /root /
