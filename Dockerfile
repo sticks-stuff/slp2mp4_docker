@@ -85,7 +85,8 @@ RUN \
   libasound2-dev \
   libpulse-dev \
   libgl1-mesa-dev \
-  libcurl4-openssl-dev
+  libcurl4-openssl-dev \
+  libfuse2
   RUN echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
   mkdir dolphin
   RUN curl -LJO https://www.dropbox.com/scl/fi/c9gsqiu62gnnzwugwo7sz/2025-09-12-b1f29e19e2-4.0-mainline-linux-playback.zip?rlkey=6dqhp6tnmw4bf7u5o1z9wa18y
