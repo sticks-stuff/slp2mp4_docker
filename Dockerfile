@@ -86,31 +86,14 @@ RUN \
   libgl1-mesa-dev \
   libcurl4-openssl-dev && \
   echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
-  git clone https://github.com/project-slippi/Ishiiruka && \
   git clone https://github.com/vladfi1/dolphin
   COPY . .
-  RUN cp ./Ishiiruka/build*.sh ./dolphin/
-  WORKDIR Ishiiruka/
+  WORKDIR /dolphin
   RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
     export PATH="/root/.cargo/bin:$PATH"
   RUN git submodule update --init --recursive
   RUN \
-  ./build-linux.sh playback && \
-  echo "**** cleanup ****" && \
-  printf \
-    "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
-    > /build_version && \
-  apt-get autoclean && \
-  rm -rf \
-    /config/.cache \
-    /var/lib/apt/lists/* \
-    /var/tmp/* \
-    /tmp/*
-    
-  WORKDIR /dolphin
-  
-  RUN \
-  ./build-linux.sh playback && \
+  /config/build-linux.sh playback && \
   echo "**** cleanup ****" && \
   printf \
     "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
