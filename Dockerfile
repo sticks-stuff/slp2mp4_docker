@@ -92,10 +92,10 @@ RUN \
   RUN curl -fLJO "https://www.dropbox.com/scl/fi/c9gsqiu62gnnzwugwo7sz/2025-09-12-b1f29e19e2-4.0-mainline-linux-playback.zip?rlkey=6dqhp6tnmw4bf7u5o1z9wa18y&dl=1"
   RUN ls
   COPY . .
-  RUN mv *.zip ./dolphin/
+  RUN mv unspecified ./dolphin/
   WORKDIR /dolphin
     
-  RUN unzip 2025-09-12-b1f29e19e2-4.0-mainline-linux-playback.zip
+  RUN unzip unspecified
   RUN /dolphin/Slippi_Playback_Mainline-x86_64.AppImage --appimage-extract
   RUN pip install "slp2mp4[gui] @ git+https://github.com/davisdude/slp2mp4.git"
   RUN slp2mp4 -h  
