@@ -30,6 +30,8 @@ RUN \
   echo "**** install packages ****" && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
+  gcc-12 \
+  g++-12 \
   cmake \
   pkg-config \
   git \
@@ -86,6 +88,9 @@ RUN \
   libpulse-dev \
   libgl1-mesa-dev \
   libcurl4-openssl-dev && \
+  && \
+  update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 100 && \
+  update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 100
   echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
   git clone https://github.com/vladfi1/dolphin
   COPY . .
