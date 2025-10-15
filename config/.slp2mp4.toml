@@ -4,8 +4,8 @@ slippi_playback = "/config/squashfs-root/AppRun.wrapped"
 ssbm_iso = "/roms/Melee.iso"
 
 [dolphin]
-backend = "OGL"
-resolution = "720p"
+backend = "Vulkan"
+resolution = "480p"
 bitrate = 2000
 
 [ffmpeg]
