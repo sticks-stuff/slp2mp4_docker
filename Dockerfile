@@ -89,7 +89,7 @@ RUN \
   libfuse2
   RUN echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
   mkdir /dolphin
-  RUN ls -R | *.zip
+  RUN ls -R | grep *.zip
   RUN cp /config/*.zip ./dolphin/
   RUN unzip /dolphin/*.zip
   RUN unzip /dolphin/*.zip
