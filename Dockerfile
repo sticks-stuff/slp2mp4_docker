@@ -91,7 +91,7 @@ RUN \
   mkdir /dolphin
   RUN curl -fLJO "https://www.dropbox.com/scl/fi/c9gsqiu62gnnzwugwo7sz/2025-09-12-b1f29e19e2-4.0-mainline-linux-playback.zip?rlkey=6dqhp6tnmw4bf7u5o1z9wa18y&dl=1"
   COPY . .
-  RUN mv 2025-09-12-b1f29e19e2-4.0-mainline-linux-playback.zip ./dolphin/
+  RUN mv *.zip ./dolphin/
   WORKDIR /dolphin
     
   RUN unzip 2025-09-12-b1f29e19e2-4.0-mainline-linux-playback.zip
