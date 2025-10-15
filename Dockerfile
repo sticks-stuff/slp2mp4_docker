@@ -65,6 +65,7 @@ RUN \
   qtbase5-private-dev \
   libxxf86vm-dev \
   x11proto-xinerama-dev \
+  libzmq3-dev \
   build-essential \
   git \ 
   cmake \
