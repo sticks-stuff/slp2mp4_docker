@@ -89,11 +89,12 @@ RUN \
   libfuse2
   RUN echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
   mkdir /dolphin
+
+  COPY . .
   RUN ls /config/
   RUN cp /config/*.zip ./dolphin/
   RUN unzip /dolphin/*.zip
   RUN unzip /dolphin/*.zip
-  COPY . .
   WORKDIR /dolphin
   RUN /dolphin/Slippi_Playback_Mainline-x86_64.AppImage --appimage-extract
   RUN pip install "slp2mp4[gui] @ git+https://github.com/davisdude/slp2mp4.git"
