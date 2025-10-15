@@ -5,7 +5,7 @@ ssbm_iso = "/roms/Melee.iso"
 
 [dolphin]
 backend = "OGL"
-resolution = "360p"
+resolution = "480p"
 bitrate = 2000
 
 [ffmpeg]
