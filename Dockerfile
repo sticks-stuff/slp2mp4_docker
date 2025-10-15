@@ -95,7 +95,7 @@ RUN \
   WORKDIR /dolphin
     
   RUN unzip 2025-09-12-b1f29e19e2-4.0-mainline-linux-playback.zip
-  RUN ./dolphin/Slippi_Playback_Mainline-x86_64.AppImage --appimage-extract
+  RUN /dolphin/Slippi_Playback_Mainline-x86_64.AppImage --appimage-extract
   RUN pip install "slp2mp4[gui] @ git+https://github.com/davisdude/slp2mp4.git"
   RUN slp2mp4 -h  
   
