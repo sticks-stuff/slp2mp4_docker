@@ -1,0 +1,21 @@
+--- a/Source/Core/Common/x64CPUDetect.cpp
++++ b/Source/Core/Common/x64CPUDetect.cpp
+@@ -42,10 +42,15 @@
+ 
+ #if defined(_M_X86) || defined(_M_X64) || defined(__i386__) || defined(__x86_64__)
+ 
+-#if defined(__GNUC__) && !defined(__clang__)
+-// Only needed for GCC < 12. GCC 12+ provides _xgetbv in xsaveintrin.h.
+-#include <xsaveintrin.h>
+-#endif
++#include <xsaveintrin.h>
++
++// Avoid redefinition if _xgetbv is provided by the compiler (GCC >= 11)
++#if !defined(__xgetbv_defined) && (!defined(__GNUC__) || __GNUC__ < 11)
++static u64 _xgetbv(u32 index)
++{
++    u32 eax, edx;
++    asm volatile(".byte 0x0f, 0x01, 0xd0" : "=a"(eax), "=d"(edx) : "c"(index));
++    return ((u64)edx << 32) | eax;
++}
++#endif

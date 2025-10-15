@@ -30,8 +30,6 @@ RUN \
   echo "**** install packages ****" && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
-  gcc-11 \
-  g++-11 \
   cmake \
   pkg-config \
   git \
@@ -88,13 +86,12 @@ RUN \
   libpulse-dev \
   libgl1-mesa-dev \
   libcurl4-openssl-dev
-  
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 100 && \
-    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 100
   RUN echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
-  git clone https://github.com/vladfi1/dolphin
+  mkdir dolphin
+  RUN curl -LJO https://www.dropbox.com/scl/fi/c9gsqiu62gnnzwugwo7sz/2025-09-12-b1f29e19e2-4.0-mainline-linux-playback.zip?rlkey=6dqhp6tnmw4bf7u5o1z9wa18y ./dolphin
   COPY . .
   WORKDIR /dolphin
+  
   RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
     export PATH="/root/.cargo/bin:$PATH"
   RUN git submodule update --init --recursive
@@ -110,7 +107,7 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 100 && \
     /var/lib/apt/lists/* \
     /var/tmp/* \
     /tmp/*
-    
+  
   RUN pip install "slp2mp4[gui] @ git+https://github.com/davisdude/slp2mp4.git"
   RUN slp2mp4 -h  
   
