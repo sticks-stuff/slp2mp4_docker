@@ -88,26 +88,13 @@ RUN \
   libcurl4-openssl-dev
   RUN echo "**** starting FM-Slippi install (NO NETPLAY) ****" && \
   mkdir dolphin
-  RUN curl -LJO https://www.dropbox.com/scl/fi/c9gsqiu62gnnzwugwo7sz/2025-09-12-b1f29e19e2-4.0-mainline-linux-playback.zip?rlkey=6dqhp6tnmw4bf7u5o1z9wa18y ./dolphin
+  RUN curl -LJO https://www.dropbox.com/scl/fi/c9gsqiu62gnnzwugwo7sz/2025-09-12-b1f29e19e2-4.0-mainline-linux-playback.zip?rlkey=6dqhp6tnmw4bf7u5o1z9wa18y
   COPY . .
+  RUN mv 2025-09-12-b1f29e19e2-4.0-mainline-linux-playback.zip ./dolpin
   WORKDIR /dolphin
-  
-  RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
-    export PATH="/root/.cargo/bin:$PATH"
-  RUN git submodule update --init --recursive
-  RUN \
-  /config/build-linux.sh playback && \
-  echo "**** cleanup ****" && \
-  printf \
-    "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" \
-    > /build_version && \
-  apt-get autoclean && \
-  rm -rf \
-    /config/.cache \
-    /var/lib/apt/lists/* \
-    /var/tmp/* \
-    /tmp/*
-  
+    
+  RUN unzip 2025-09-12-b1f29e19e2-4.0-mainline-linux-playback.zip
+    
   RUN pip install "slp2mp4[gui] @ git+https://github.com/davisdude/slp2mp4.git"
   RUN slp2mp4 -h  
   
