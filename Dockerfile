@@ -93,9 +93,10 @@ RUN \
   COPY . .
   RUN ls /config/
   RUN cp /config/*.zip ./dolphin/
-  RUN unzip /dolphin/*.zip
-  RUN unzip /dolphin/*.zip
+ 
   WORKDIR /dolphin
+  RUN unzip *.zip
+  RUN unzip *.zip
   RUN /dolphin/Slippi_Playback_Mainline-x86_64.AppImage --appimage-extract
   RUN pip install "slp2mp4[gui] @ git+https://github.com/davisdude/slp2mp4.git"
   RUN slp2mp4 -h  
