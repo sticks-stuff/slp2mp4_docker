@@ -1,0 +1,52 @@
+#!/usr/bin/with-contenv bash
+set -euo pipefail
+
+# Watch for new .zip files in /config/SlippiReplays, render with slp2mp4, then remove zip
+
+WATCH_DIR="/config/SlippiReplays"
+WORK_DIR="${WATCH_DIR}/.work"
+FAILED_DIR="${WATCH_DIR}/.failed"
+LOG_FILE="/config/slp2mp4-watcher.log"
+
+mkdir -p "$WATCH_DIR" "$WORK_DIR" "$FAILED_DIR"
+
+echo "[$(date -Is)] slp2mp4-watcher: started; watching $WATCH_DIR" >> "$LOG_FILE"
+
+# Returns 0 if the file's size is stable across two checks
+is_file_stable() {
+  local f=$1
+  local s1 s2
+  s1=$(stat -c%s "$f" 2>/dev/null || echo 0)
+  sleep 2
+  s2=$(stat -c%s "$f" 2>/dev/null || echo 0)
+  [[ "$s1" = "$s2" && "$s1" != "0" ]]
+}
+
+while true; do
+  shopt -s nullglob
+  for zip in "$WATCH_DIR"/*.zip; do
+    base="$(basename "$zip")"
+    work_zip="$WORK_DIR/$base"
+
+    # Ensure the file isn't actively being written
+    if ! is_file_stable "$zip"; then
+      echo "[$(date -Is)] slp2mp4-watcher: $base not stable yet; will retry" >> "$LOG_FILE"
+      continue
+    fi
+
+    # Move zip into work dir to avoid double-processing and partially-written files
+    if mv -n "$zip" "$work_zip" 2>/dev/null; then
+      echo "[$(date -Is)] slp2mp4-watcher: processing $base" >> "$LOG_FILE"
+      if slp2mp4 -o /config zip "$work_zip" >> "$LOG_FILE" 2>&1; then
+        echo "[$(date -Is)] slp2mp4-watcher: completed $base; removing zip" >> "$LOG_FILE"
+        rm -f "$work_zip" || true
+      else
+        echo "[$(date -Is)] slp2mp4-watcher: FAILED $base; moving to .failed" >> "$LOG_FILE"
+        mv -f "$work_zip" "$FAILED_DIR/$base" 2>/dev/null || rm -f "$work_zip" || true
+      fi
+    else
+      echo "[$(date -Is)] slp2mp4-watcher: skip $base; could not move (maybe already processing)" >> "$LOG_FILE"
+    fi
+  done
+  sleep 10
+done
