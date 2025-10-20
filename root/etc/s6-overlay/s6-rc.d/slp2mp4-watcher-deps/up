@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bash
+set -euo pipefail
+mkdir -p /config/SlippiReplays /.config /config
+mkdir -p /config/SlippiReplays/.work /config/SlippiReplays/.failed
+exit 0
